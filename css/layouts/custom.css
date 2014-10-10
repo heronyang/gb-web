@@ -1,3 +1,8 @@
+/* Global */
+.hidden {
+    display: none;
+}
+
 /* Button - states */
 .button-success,
 .button-error,
@@ -42,8 +47,9 @@
 }
 
 /* Button - custom */
-.button-error {
+.pure-button {
     border: 3px solid white;
+    margin: 20px;
 }
 
 /* Headline */
@@ -63,4 +69,32 @@ a {
 
 .gb-success-single h5 {
     margin-bottom: 5px;
+}
+
+/* Textarea */
+textarea {
+    width: 100%;
+    resize: none;
+}
+
+/* GB submit page */
+div.splash#submit-gb-container {
+    top: 0%;
+}
+#gb-select-friend {
+    margin-top: 40px;
+}
+
+/* Image */
+.circular {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    /*background: url(http://graph.facebook.com/heron.yang/picture?type=normal) no-repeat;*/
+    background: url(../../img/common/user.png) no-repeat;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
 }
