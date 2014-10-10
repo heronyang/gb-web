@@ -70,11 +70,11 @@
             <div class="content">
                 <div class="is-center">
                     <h2 class="content-head">告白成功名單</h2>
-                    <h3>每日晚間09:09放榜</h3>
+                    <h3>每日晚間 09:09 放榜</h3>
                 </div>
                 <div class="pure-g">
-                    <div class="pure-u-1-6"></div>
-                    <div class="pure-u-2-3">
+                    <div class="pure-u-1-12"></div>
+                    <div class="pure-u-1 pure-u-md-5-6">
                         <hr/>
                         <h4>2014.04.21 星期日</h4>
                         <div class="gb-success-single">
@@ -129,13 +129,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="pure-u-1-6"></div>
+                    <div class="pure-u-1-12"></div>
                 </div>
 
 
                 <div class="pure-g">
-                    <div class="pure-u-1-6"></div>
-                    <div class="pure-u-2-3">
+                    <div class="pure-u-1-12"></div>
+                    <div class="pure-u-1 pure-u-md-5-6">
                         <hr/>
                         <h4>2014.04.20 星期六</h4>
                         <div class="gb-success-single">
@@ -190,7 +190,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="pure-u-1-6"></div>
+                    <div class="pure-u-1-12"></div>
                 </div>
 
             </div>
@@ -202,13 +202,13 @@
                 <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5">
 
                     <h2 class="content-head content-head-ribbon">你想後悔嗎？</h2>
-                    <q>五月天：「有些事現在不做一輩子都不會做了」</q>
+                    <p>五月天：<br/>「有些事現在不做一輩子都不會做了」</p>
 
                 </div>
             </div>
 
             <div class="footer l-box is-center">
-                <p>Heron's Production @ NCTU.CS</p>
+                <p><a href="http://heron.me/" target="_blank">Heron's Production @ NCTU.CS</a></p>
             </div>
 
         </div>

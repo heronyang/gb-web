@@ -2,6 +2,11 @@
 .hidden {
     display: none;
 }
+html, button, input, select, textarea,
+.pure-g [class *= "pure-u"] {
+    /* Set your content font stack here: */
+    font-family: "Lucida Console", "Lucida Sans Typewriter", Monaco, "Bitstream Vera Sans Mono", monospace;
+}
 
 /* Button - states */
 .button-success,
@@ -59,7 +64,7 @@ a {
 
 .gb-success-single {
     border: 1px solid #eee;
-    padding: 0px 2em;
+    padding: 0px;
 }
 
 .gb-success-single p{
@@ -97,4 +102,27 @@ div.splash#submit-gb-container {
     box-shadow: 0 0 8px rgba(0, 0, 0, .8);
     -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
     -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+}
+
+/* Footer */
+.footer a {
+    color: #666;
+}
+
+/* Different Sizes */
+/* sm */
+@media screen and (min-width: 35.5em) {
+}
+/* md */
+@media screen and (min-width: 48em) {
+    .gb-success-single {
+        border: 1px solid #eee;
+        padding: 0px 2em;
+    }
+}
+/* lg */
+@media screen and (min-width: 64em) {
+}
+/* xl */
+@media screen and (min-width: 80em) {
 }
