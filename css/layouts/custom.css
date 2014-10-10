@@ -47,9 +47,20 @@
 }
 
 /* Headline */
-/*
-.head-icon {
-    font-size: 3em;
-    color: white;
+a {
+    color: #1F8DD6;
 }
-    */
+
+.gb-success-single {
+    border: 1px solid #eee;
+    padding: 0px 2em;
+}
+
+.gb-success-single p{
+    padding: 0px;
+    margin: 0px;
+}
+
+.gb-success-single h5 {
+    margin-bottom: 5px;
+}
