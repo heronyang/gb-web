@@ -90,6 +90,10 @@ div.splash#submit-gb-container {
     margin-top: 40px;
 }
 
+.splash#submit-gb-container {
+    margin-top: 20%;
+}
+
 /* Image */
 .circular {
     width: 100px;
@@ -118,6 +122,9 @@ div.splash#submit-gb-container {
     .gb-success-single {
         border: 1px solid #eee;
         padding: 0px 2em;
+    }
+    .splash#submit-gb-container {
+        margin-top: auto;
     }
 }
 /* lg */

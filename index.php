@@ -60,8 +60,14 @@
                     </div>
 
                     <textarea id="content" rows="10" placeholder="我想說的話..."></textarea>
-                    <button id="gb-cancel" class="button-secondary pure-button button-xlarge">取消</button>
-                    <button id="gb-submit" class="button-error pure-button button-xlarge">送出</button>
+                    <div class="pure-g">
+                        <div class="pure-u-1-2">
+                            <button id="gb-cancel" class="button-secondary pure-button button-xlarge">取消</button>
+                        </div>
+                        <div class="pure-u-1-2">
+                            <button id="gb-submit" class="button-error pure-button button-xlarge">送出</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
