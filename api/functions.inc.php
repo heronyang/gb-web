@@ -15,6 +15,7 @@ function getDatabaseConnection() {
 	return $dbh;
 }
 
+// FIXME: this is the old one for PAIRS, should change
 function getRealIdByPhoto($photo_input){
 
 	/*
