@@ -1,8 +1,9 @@
 <!doctype html>
 <html lang="en">
     <head>
+
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
         <meta name="description" content="寫下你要告白的對象跟內容，只有他也填你的時候才會被知道，不然沒有人會知道！">
         <title>告白神器</title>
         <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
