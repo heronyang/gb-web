@@ -1,9 +1,28 @@
 <?php
 
 /* ========================================================================== */
-// 
-define('DEBUG_MODE', True);
-define('WEB_URL', 'https://gb-web.herokuapp.com/');
+// load settings
+$local_config_filename = 'local_config.php';
+if(file_exists($local_config_filename)) {
+    include $local_config_filename;
+} else {
+
+    //
+    define('DEBUG_MODE', False);
+    define('WEB_URL', 'https://gb-web.herokuapp.com/');
+
+    // FB
+    define('FB_APPID', getenv('FB_APPID'));
+    define('FB_SECRET', getenv('FB_SECRET'));
+
+    // DB
+    $dburl=parse_url(getenv("CLEARDB_DATABASE_URL"));
+    define('DBHOST', $dburl["host"]);
+    define('DBUSER', $dburl["user"]);
+    define('DBPASS', $dburl["pass"]);
+    define('DBNAME', substr($dburl["path"],1));
+
+}
 
 // turn on error if debug mode
 if(DEBUG_MODE) {
@@ -15,22 +34,6 @@ if(DEBUG_MODE) {
 // load vendor libs
 require '../vendor/autoload.php';
 $app = new \Slim\Slim();
-
-// load settings
-$local_config_filename = 'local_config.php';
-if(file_exists($local_config_filename)) {
-    include $local_config_filename;
-} else {
-    define('FB_APPID', getenv('FB_APPID'));
-    define('FB_SECRET', getenv('FB_SECRET'));
-
-    // DB
-    $dburl=parse_url(getenv("CLEARDB_DATABASE_URL"));
-    define('DBHOST', $dburl["host"]);
-    define('DBUSER', $dburl["user"]);
-    define('DBPASS', $dburl["pass"]);
-    define('DBNAME', substr($dburl["path"],1));
-}
 
 // header setups
 $app->response->headers->set("Content-Type", "application/json; charset=utf-8");
@@ -54,7 +57,7 @@ include 'functions.inc.php';
  * Parameter: None
  * Response:
  *  - 302: User not logged in yet, redirect user to Facebook OAuth page
- *  - 302: User came back from Facebook OAuth page, redirect user to Pairs Web
+ *  - 302: User came back from Facebook OAuth page, redirect user to main site
  */
 $app->get('/login', function() use($app) {
 
@@ -71,7 +74,6 @@ $app->get('/login', function() use($app) {
 		}else if($app->request->getReferer() == null){
 			// User tried to visit /login directly, set URL to redirect back to default
 			$_SESSION['referer'] = WEB_URL;
-
 		}else{
 			// User may be coming back from Facebook OAuth, but denined access
 			// Redirect back to where user came from
@@ -115,8 +117,6 @@ abstract class GB_STATUS {
  * Parameter:
  *  - target_user (fbid_tagglable)
  *  - content
- * Response: 
- *  - 200: success
  */
 $app->post('/gb', function() use($app) {
 
@@ -130,48 +130,59 @@ $app->post('/gb', function() use($app) {
     try {
 
         $db = getDatabaseConnection();
-        $sql = 'UPDATE `gb` SET `status` = '.GB_STATUS::DISABLED.' WHERE `user1` = :user1';
-        $stmt = $db->prepare(sql);
-        $stmt->execute( {
+        $sql = 'UPDATE `gb` SET `status` = :status WHERE `user1_appid` = :user1_appid';
+        $stmt = $db->prepare($sql);
+        $stmt->execute(
             array(
-                ":user1" => user1
+                ":status"       => GB_STATUS::DISABLED,
+                ":user1_appid"  => $fbid
             )
-        }
+        );
 
 	} catch(PDOException $e) {
 
         $tag = "[GET /gb](disable old gbs) Error";
-        error_log( $tag . ": " . $e.->getMessage());
+        error_log( $tag . ": " . $e->getMessage() );
 		$app->halt(500, $tag);
 
 	}
 
     // add new
-    if( isset($_POST['target_user' && isset($_POST['content'] ) {
+    if( isset($_POST['target_user']) && isset($_POST['content']) ) {
 
         try {
 
-            $user1 = $fbid;
-            $user2 = getRealIdByPhoto($_POST['target_uer');
-            $content = $_POST['content'];
-            $status = GB_STATUS:ENABLED;
+            $user1          = getMeRealId($facebook);
+            $user1_appid    = $fbid;
+            $user2          = getRealIdByPhoto($_POST['target_user']);
+            $user2_tagid    = $_POST['target_user'];
+            $content        = $_POST['content'];
+            $status         = GB_STATUS::ENABLED;
 
-            $sql = 'INSERT INTO `gb` (`user1`, `user2`, `content`, `status`) VALUES (:user1, :user2, :content, :status)';
+            if( $user1==0 ) {
+                $app->halt(400, "[POST /gb] Error: can't handle this user1");
+            } else if ( $user2==0 ) {
+                $app->halt(400, "[POST /gb] Error: can't handle this user2");
+            }
+
+            $sql = 'INSERT INTO `gb` (`user1`, `user1_appid`, `user2`, `user2_tagid`, `content`, `status`) VALUES (:user1, :user1_appid, :user2, :user2_tagid, :content, :status)';
             $stmt = $db->prepare($sql);
             $stmt->execute(
                 array(
-                    ':user1':   $user1,
-                    ':user2':   $user2,
-                    ':content': $content,
-                    ':status':  $status
+                    ':user1'=>          $user1,
+                    ':user1_appid'=>    $user1_appid,
+                    ':user2'=>          $user2,
+                    ':user2_tagid'=>    $user2_tagid,
+                    ':content'=>        $content,
+                    ':status'=>         $status
                 )
             );
-            echo json_decode (array("data" => "success"));
+            echo json_encode (array("data" => "success"));
 
         } catch(PDOException $e) {
 
             $tag = "[GET /gb](add new) Error";
-            error_log( $tag . ": " . $e.->getMessage());
+            error_log( $tag . ": " . $e->getMessage());
             $app->halt(500, $tag);
 
         }
@@ -181,14 +192,12 @@ $app->post('/gb', function() use($app) {
         $app->halt(400, "[POST /gb]: bad request");
     }
 
-}
+});
 
 /* ========================================================================== */
 /*
  * Method: GET /gb
- * Parameter:
- * Response: 
- *  - 200: success
+ * Parameter: -
  */
 $app->get('/gb', function() use($app) {
 
@@ -201,25 +210,28 @@ $app->get('/gb', function() use($app) {
     try {
 
         $db = getDatabaseConnection();
-        $sql = 'SELECT `gid`, `user2`, `content`, `status`, `ctime`, `mtime` FROM `gb` WHERE `user1` = :user1 AND `status` = :status';
+        $sql = 'SELECT `gid`, `user1`, `user2`, `content`, `status`, `ctime`, `mtime` FROM `gb` WHERE `user1_appid` = :user1_appid AND `status` = :status';
 
         $stmt = $db->prepare($sql);
         $stmt->execute(
-            ":user1"    => $fbid,
-            ":status"   => GB_STATUS::ENABLED
+            array(
+                ':user1_appid'    => $fbid,
+                ':status'   => GB_STATUS::ENABLED
+            )
         );
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        echo json_decode (array("data" => $result));
+        if(!$result)    echo json_encode (array("data" => ""));
+        else            echo json_encode (array("data" => $result));
 
 	} catch(PDOException $e) {
 
-        $tag = "[GET /gb_success] Error";
-        error_log( $tag . ": " . $e.->getMessage());
+        $tag = "[GET /gb] Error";
+        error_log( $tag . ": " . $e->getMessage());
 		$app->halt(500, $tag);
 
 	}
-}
+});
 
 /* ========================================================================== */
 /*
@@ -232,37 +244,59 @@ $app->get('/gb_success', function() use($app) {
     try {
 
         $db = getDatabaseConnection();
-        $sql = 'SELECT `gsid`, `user1`, `user2`, `gid1`, `gid2`, `ctime`, `mtime`, `status` FROM `gb_success`';
+        $sql = 'SELECT `gsid`, `user1`, `user2`, `gid1`, `gid2`, `status`, `ctime`, `mtime` FROM `gb_success`';
 
         $stmt = $db->prepare($sql);
         $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+        if(!$result) {
+            echo json_encode (array("data" => ""));
+            $app->stop();
+        }
         foreach($result as $key => $value) {
-            $sql = 'SELECT `content`, `status`, `ctime`, `mtime` FROM `gb_success` WHERE `gid` = :gid';
+            $sql = 'SELECT `content`, `status`, `ctime`, `mtime` FROM `gb` WHERE `gid` = :gid';
             $stmt = $db->prepare($sql);
 
             $gids = array('gid1', 'gid2');
-            foreach($gs as $gids) {
+            foreach($gids as $gs) {
                 $stmt->execute(
                     array(
                         ':gid' => $result[$key][$gs]
                     )
                 );
-                $result[$key][$gs] = $stmt->fetch(PDO:FETCH_ASSOC);
+                $result[$key][$gs."_d"] = $stmt->fetch(PDO::FETCH_ASSOC);
             }
         }
 
-        echo json_decode (array("data" => $result));
+        echo json_encode (array("data" => $result));
 
 	} catch(PDOException $e) {
 
         $tag = "[GET /gb_success] Error";
-        error_log( $tag . ": " . $e.->getMessage());
+        error_log( $tag . ": " . $e->getMessage());
 		$app->halt(500, $tag);
 
 	}
-}
+});
+
+/* ========================================================================== */
+/*
+ * Method: GET /fb_friends
+ * Parameter: -
+ */
+$app->get('/fb_friends', function() use($app) {
+	$facebook = getFacebook();
+	$fbid = $facebook->getUser();
+
+    // not logged in, permission denied
+	if(!$fbid)  $app->halt(403, "[GET /fb_friends]: not logged in");
+
+    //
+    $friends = $facebook->api('me/taggable_friends?fields=name,picture.width(100)');
+	if(!$friends)  $app->halt(400, "[GET /fb_friends]: can't get friends");
+    echo json_encode($friends);
+});
 
 /* ========================================================================== */
 //

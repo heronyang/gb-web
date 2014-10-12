@@ -57,31 +57,27 @@ $description = '向一位FB好友告白，只有他也向你告白時才會被�
                 <div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
             </div>
             <div id="submit-gb-container" class="splash hidden">
-                <form class="pure-form pure-form-stacked">
-                    <div class="pure-g">
-                        <div class="pure-u-1-2">
-                            <select name="gb-target" id="gb-select-friend">
-                                <option value="not-selected">告白對象..</option>
-                                <option value="heron.yang">Heron Yang</option>
-                                <option value="heron.yangs">Dicky</option>
-                            </select>
-                        </div>
-                        <div class="pure-u-1-2">
-                            <div id="gb-target-img" class="circular pull-right"></div>
-                        </div>
-
+                <div class="pure-g">
+                    <div class="pure-u-1-2">
+                        <select name="gb-target" id="gb-select-friend">
+                            <option value="not-selected">告白對象..</option>
+                        </select>
+                    </div>
+                    <div class="pure-u-1-2">
+                        <div id="gb-target-img" class="circular pull-right"></div>
                     </div>
 
-                    <textarea id="content" rows="10" placeholder="我想說的話..."></textarea>
-                    <div class="pure-g">
-                        <div class="pure-u-1-2">
-                            <button id="gb-cancel" class="button-secondary pure-button button-xlarge">取消</button>
-                        </div>
-                        <div class="pure-u-1-2">
-                            <button id="gb-submit" class="button-error pure-button button-xlarge">送出</button>
-                        </div>
+                </div>
+
+                <textarea id="content" rows="10" placeholder="我想說的話..."></textarea>
+                <div class="pure-g">
+                    <div class="pure-u-1-2">
+                        <button id="gb-cancel" class="button-secondary pure-button button-xlarge">取消</button>
                     </div>
-                </form>
+                    <div class="pure-u-1-2">
+                        <button id="gb-submit" class="button-error pure-button button-xlarge">送出</button>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -236,8 +232,8 @@ $description = '向一位FB好友告白，只有他也向你告白時才會被�
             window.fbAsyncInit = function() {
                 FB.init({
                     appId      : '1479681152310531',
-                        xfbml      : true,
-                        version    : 'v2.1'
+                    xfbml      : true,
+                    version    : 'v2.1'
                 });
             };
 
