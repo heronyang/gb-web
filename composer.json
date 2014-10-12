@@ -1,0 +1,8 @@
+{
+    "require": {
+        "facebook/php-sdk": "dev-master"
+    },
+    "autoload": {
+        "psr-0": { "": "src/"}
+    }
+}
