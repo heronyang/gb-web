@@ -37,6 +37,9 @@ $description = '向一位FB好友告白，只有他也向你告白時才會被�
 
     </head>
     <body>
+        
+        <div id="fb-root"></div>
+
         <div class="header">
             <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
                 <a class="pure-menu-heading" href=""><?php echo $title; ?></a>
@@ -51,6 +54,7 @@ $description = '向一位FB好友告白，只有他也向你告白時才會被�
                 <p class="is-center">
                     <button id="gb-start" class="button-error pure-button button-xlarge">衝一發</button>
                 </p>
+                <div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
             </div>
             <div id="submit-gb-container" class="splash hidden">
                 <form class="pure-form pure-form-stacked">
@@ -228,6 +232,23 @@ $description = '向一位FB好友告白，只有他也向你告白時才會被�
 
         </div>
 
+        <script>
+            window.fbAsyncInit = function() {
+                FB.init({
+                    appId      : '1479681152310531',
+                        xfbml      : true,
+                        version    : 'v2.1'
+                });
+            };
+
+            (function(d, s, id){
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {return;}
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
         <script src="gb-controller.js"></script>
 
     </body>

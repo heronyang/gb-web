@@ -4,3 +4,7 @@ install:
 
 run:
 	foreman start -f Procfile.dev
+
+db_init:
+	mysql -u root -p < test_environment.sql
+	mysql gb_test -u root -p < db.schema.sql
