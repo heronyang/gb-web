@@ -1,11 +1,19 @@
+<?php
+
+$title = '告白神器';
+$description = '向一位FB好友告白，只有他也向你告白時才會被知道！';
+
+?>
+
 <!doctype html>
 <html lang="en">
     <head>
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
-        <meta name="description" content="寫下你要告白的對象跟內容，只有他也填你的時候才會被知道，不然沒有人會知道！">
-        <title>告白神器</title>
+        <meta name="description" content="<?php echo $description; ?>">
+        <title><?php echo $title; ?></title>
+
         <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
 
         <!--[if lte IE 8]>
@@ -31,7 +39,7 @@
     <body>
         <div class="header">
             <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
-                <a class="pure-menu-heading" href="">告白神器</a>
+                <a class="pure-menu-heading" href=""><?php echo $title; ?></a>
             </div>
         </div>
 
