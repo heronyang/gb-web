@@ -165,7 +165,7 @@ $app->post('/gb', function() use($app) {
                 $app->halt(400, "[POST /gb] Error: can't handle this user2");
             }
 
-            $sql = 'INSERT INTO `gb` (`user1`, `user1_appid`, `user2`, `user2_tagid`, `content`, `status`) VALUES (:user1, :user1_appid, :user2, :user2_tagid, :content, :status)';
+            $sql = 'INSERT INTO `gb` (`user1`, `user1_appid`, `user2`, `user2_tagid`, `content`, `status`, `ctime`) VALUES (:user1, :user1_appid, :user2, :user2_tagid, :content, :status, NOW())';
             $stmt = $db->prepare($sql);
             $stmt->execute(
                 array(
@@ -174,7 +174,7 @@ $app->post('/gb', function() use($app) {
                     ':user2'=>          $user2,
                     ':user2_tagid'=>    $user2_tagid,
                     ':content'=>        $content,
-                    ':status'=>         $status
+                    ':status'=>         $status,
                 )
             );
             echo json_encode (array("data" => "success"));
