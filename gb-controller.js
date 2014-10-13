@@ -1,4 +1,4 @@
-api_base = 'http://gb-web.herokuapp.com/';
+api_base = 'http://gb-web.herokuapp.com/api';
 if(localStorage['base'])    api_base = localStorage['base'];
 
 var logged_in = false;
