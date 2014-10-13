@@ -45,6 +45,8 @@ $description = '向一位FB好友告白，只有他也向你告白時才會被�
                 <a class="pure-menu-heading" href=""><?php echo $title; ?></a>
             </div>
         </div>
+    
+        <div class="spinner"></div>
 
         <div class="splash-container">
             <div id="init-head-container" class="splash">
@@ -70,6 +72,10 @@ $description = '向一位FB好友告白，只有他也向你告白時才會被�
                 </div>
 
                 <textarea id="content" rows="10" placeholder="我想說的話..."></textarea>
+                <p id="extra-info" class="hidden">上次與<span id="last-gb-name"></span>的告白記錄將會再更新後失效</p>
+                <div class="checkbox">
+                    <label><input id="agree-policy" type="checkbox"/>同意使用條款與隱私條款</label>
+                </div>
                 <div class="pure-g">
                     <div class="pure-u-1-2">
                         <button id="gb-cancel" class="button-secondary pure-button button-xlarge">取消</button>
@@ -217,7 +223,7 @@ $description = '向一位FB好友告白，只有他也向你告白時才會被�
                 <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5">
 
                     <h2 class="content-head content-head-ribbon">你想後悔嗎？</h2>
-                    <p>五月天：<br/>「有些事現在不做一輩子都不會做了」</p>
+                    <blockquote class="content-quote">五月天：<br/>「有些事現在不做一輩子都不會做了」</blockquote>
 
                 </div>
             </div>
