@@ -9,7 +9,7 @@ if(file_exists($local_config_filename)) {
 
     //
     define('DEBUG_MODE', False);
-    define('WEB_URL', 'https://gb-web.herokuapp.com/');
+    define('WEB_URL', 'https://gb-web.herokuapp.com');
 
     // FB
     define('FB_APPID', getenv('FB_APPID'));
