@@ -33,7 +33,7 @@ function show_gb_success(data) {
         html += '<p><i><time datetime="'+format_time_comment(gb['gid2_d']['ctime'])+'">'+format_time_comment(gb['gid2_d']['ctime'])+'</time></i></p>';
         html += '</div></div>';
 
-        html += '</div>';
+        html += '</div></div>';
     });
     html += '</div>';     // pure-u-1-12, 5-6
     container.html(html);
