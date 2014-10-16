@@ -13,6 +13,33 @@ if (window.location.hash && window.location.hash == '#_=_') {
 }
 
 /* UI - Actions */
+function show_gb_success(data) {
+    console.log(data);
+    var container = $('#gb_success_container');
+    var html = '<div class="pure-u-1-12"></div><div class="pure-u-1 pure-u-md-5-6">';
+    data.forEach(function(gb) {
+        html += '<h4>'+format_time_section(gb['ctime'])+'</h4>';
+        html += '<div class="gb-success-single">';
+        html += '<h5><a href="http://www.facebook.com/'+gb['user1']+'" class="fb_name_'+gb['user1']+'" target="_blank"></a> 跟 <a href="http://www.facebook.com/'+gb['user2']+'"class="fb_name_'+gb['user2']+'" target="_blank"></a> 在一起了！</h5>';
+        html += '<div class="pure-g">';
+
+        html += '<div class="pure-u-1-2"><div class="l-box">';
+        html += '<p><b class="fb_name_'+gb['user1']+'"></b>: '+gb['gid1_d']['content']+'</p>';
+        html += '<p><i><time datetime="'+format_time_comment(gb['gid1_d']['ctime'])+'">'+format_time_comment(gb['gid1_d']['ctime'])+'</time></i></p>';
+        html += '</div></div>';
+
+        html += '<div class="pure-u-1-2"><div class="l-box">';
+        html += '<p><b class="fb_name_'+gb['user2']+'"></b>: '+gb['gid2_d']['content']+'</p>';
+        html += '<p><i><time datetime="'+format_time_comment(gb['gid2_d']['ctime'])+'">'+format_time_comment(gb['gid2_d']['ctime'])+'</time></i></p>';
+        html += '</div></div>';
+
+        html += '</div>';
+    });
+    html += '</div>';     // pure-u-1-12, 5-6
+    container.html(html);
+    fillFacebookUsername(data);
+}
+
 function show_logged_in_layout() {
     loading_start();
     $('#init-head-container').hide();
@@ -115,7 +142,6 @@ function api_logout() {
 }
 
 /* APIs - GB */
-var da;
 function api_gb() {
     $.ajax({
         type: "GET",
@@ -176,6 +202,22 @@ function api_gb_post(content) {
     });
 }
 
+function api_gb_success() {
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: api_base + "/gb_success",
+        error:
+        function(data) {
+            network_error(data);
+        },
+        success:
+        function(data) {
+            show_gb_success(data['data']);
+        }
+    });
+}
+
 /* APIs - Other */
 function api_fb_friends() {
     $.ajax({
@@ -213,8 +255,34 @@ function sort_fb_friends() {
     });
 }
 
+function executeAsync(func) {
+    setTimeout(func, 0);
+}
+
+function format_time_comment(t) {
+    return t;
+}
+
+function format_time_section(t) {
+    return t;
+}
+
+function fillFacebookUsername(data) {
+    data.forEach(function(gb) {
+        var id1 = gb['user1'], id2 = gb['user2'];
+        $.get('https://graph.facebook.com/'+id1, function (r) {
+            $('.fb_name_'+id1).text(r.name);
+        }, 'jsonp');
+        $.get('https://graph.facebook.com/'+id2, function (r) {
+            $('.fb_name_'+id2).text(r.name);
+        }, 'jsonp');
+    });
+}
+
 /* Main */
 $( document ).ready(function() {
     console.log("Hello Hacker!");
-    api_gb();
+    // to speed up, do they in the same time
+    executeAsync(api_gb());
+    executeAsync(api_gb_success());
 });
