@@ -81,7 +81,7 @@ $app->get('/login', function() use($app) {
 		}
 
 		$login_params = array(
-			'scope' => 'user_friends, email'
+			'scope' => 'user_friends, email, publish_actions, manage_friendlists'
 		);
 
 		$app->redirect($facebook->getLoginUrl($login_params));
@@ -148,14 +148,21 @@ $app->post('/gb', function() use($app) {
 	}
 
     // add new
-    if( isset($_POST['target_user']) && isset($_POST['content']) ) {
+    if( isset($_POST['target_user_url']) && isset($_POST['target_user_id']) && isset($_POST['content']) ) {
 
         try {
 
             $user1          = getMeRealId($facebook);
             $user1_appid    = $fbid;
-            $user2          = getRealIdByPhoto($_POST['target_user']);
-            $user2_tagid    = $_POST['target_user'];
+            $r = $facebook->api('/me');
+            $user1_email    = $r['email'];
+            $user1_name     = $r['name'];
+
+            $user2          = getRealIdByPhoto($_POST['target_user_url']);
+            $user2_tagid    = $_POST['target_user_id'];
+            $user2_tagurl   = $_POST['target_user_url'];
+            $user2_name     = $_POST['target_user_name'];
+
             $content        = $_POST['content'];
             $status         = GB_STATUS::ENABLED;
 
@@ -165,14 +172,18 @@ $app->post('/gb', function() use($app) {
                 $app->halt(400, "[POST /gb] Error: can't handle this user2");
             }
 
-            $sql = 'INSERT INTO `gb` (`user1`, `user1_appid`, `user2`, `user2_tagid`, `content`, `status`, `ctime`) VALUES (:user1, :user1_appid, :user2, :user2_tagid, :content, :status, NOW())';
+            $sql = 'INSERT INTO `gb` (`user1`, `user1_appid`, `user1_email`, `user1_name`, `user2`, `user2_tagid`, `user2_tagurl`, `user2_name`, `content`, `status`, `ctime`) VALUES (:user1, :user1_appid, :user1_email, :user1_name, :user2, :user2_tagid, :user2_tagurl, :user2_name, :content, :status, NOW())';
             $stmt = $db->prepare($sql);
             $stmt->execute(
                 array(
                     ':user1'=>          $user1,
                     ':user1_appid'=>    $user1_appid,
+                    ':user1_email'=>    $user1_email,
+                    ':user1_name'=>     $user1_name,
                     ':user2'=>          $user2,
                     ':user2_tagid'=>    $user2_tagid,
+                    ':user2_tagurl'=>   $user2_tagurl,
+                    ':user2_name'=>     $user2_name,
                     ':content'=>        $content,
                     ':status'=>         $status,
                 )
@@ -191,6 +202,24 @@ $app->post('/gb', function() use($app) {
         // bad request
         $app->halt(400, "[POST /gb]: bad request");
     }
+
+    // post on wall (only for passing the Facebook Review)
+    /*
+    try {
+        $content    = $_POST['content'];
+        $tag_friend = $_POST['target_user_id'];
+        error_log('tag: '.$tag_friend);
+        $facebook->api('me/feed', 'POST', array(
+            'message'   => $content,
+            'tags'      => $tag_friend,
+            'place'     => '147492585312445'
+        ));
+    } catch(PDOException $e) {
+        $tag = "[POST /gb] Error (can't post)";
+        error_log($tag . ": " . $e->getMessage());
+        $app->halt(500, $tag);
+    }
+     */
 
 });
 
@@ -255,7 +284,7 @@ $app->get('/gb_success', function() use($app) {
             $app->stop();
         }
         foreach($result as $key => $value) {
-            $sql = 'SELECT `content`, `status`, `ctime`, `mtime` FROM `gb` WHERE `gid` = :gid';
+            $sql = 'SELECT `user1_name`, `content`, `status`, `ctime`, `mtime` FROM `gb` WHERE `gid` = :gid';
             $stmt = $db->prepare($sql);
 
             $gids = array('gid1', 'gid2');

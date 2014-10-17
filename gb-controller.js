@@ -5,7 +5,9 @@ var logged_in = false;
 var fb_friends;
 
 var cur_t_id = 0;
+var cur_t_ind = 0;
 var cur_t_p_url = "";
+var cur_t_name = "";
 var MAX_CONTENT_LENGTH = 500;
 
 if (window.location.hash && window.location.hash == '#_=_') {
@@ -14,22 +16,26 @@ if (window.location.hash && window.location.hash == '#_=_') {
 
 /* UI - Actions */
 function show_gb_success(data) {
-    console.log(data);
     var container = $('#gb_success_container');
+    if(data == "") {
+        container.html('目前沒有資料');
+        return;
+    }
+
     var html = '<div class="pure-u-1-12"></div><div class="pure-u-1 pure-u-md-5-6">';
     data.forEach(function(gb) {
         html += '<h4>'+format_time_section(gb['ctime'])+'</h4>';
         html += '<div class="gb-success-single">';
-        html += '<h5><a href="http://www.facebook.com/'+gb['user1']+'" class="fb_name_'+gb['user1']+'" target="_blank"></a> 跟 <a href="http://www.facebook.com/'+gb['user2']+'"class="fb_name_'+gb['user2']+'" target="_blank"></a> 在一起了！</h5>';
+        html += '<h5><a href="http://www.facebook.com/'+gb['user1']+'" target="_blank">'+gb['gid1_d']['user1_name']+'</a> 跟 <a href="http://www.facebook.com/'+gb['user2']+'" target="_blank">'+gb['gid1_d']['user1_name']+'</a> 在一起了！</h5>';
         html += '<div class="pure-g">';
 
         html += '<div class="pure-u-1-2"><div class="l-box">';
-        html += '<p><b class="fb_name_'+gb['user1']+'"></b>: '+gb['gid1_d']['content']+'</p>';
+        html += '<p><b>'+gb['gid1_d']['user1_name']+'</b>: '+gb['gid1_d']['content']+'</p>';
         html += '<p><i><time datetime="'+format_time_comment(gb['gid1_d']['ctime'])+'">'+format_time_comment(gb['gid1_d']['ctime'])+'</time></i></p>';
         html += '</div></div>';
 
         html += '<div class="pure-u-1-2"><div class="l-box">';
-        html += '<p><b class="fb_name_'+gb['user2']+'"></b>: '+gb['gid2_d']['content']+'</p>';
+        html += '<p><b>'+gb['gid2_d']['user1_name']+'</b>: '+gb['gid2_d']['content']+'</p>';
         html += '<p><i><time datetime="'+format_time_comment(gb['gid2_d']['ctime'])+'">'+format_time_comment(gb['gid2_d']['ctime'])+'</time></i></p>';
         html += '</div></div>';
 
@@ -103,15 +109,16 @@ $('#gb-submit').click(function() {
 });
 
 $('#gb-select-friend').on('change', function() {
-    var cur_t_ind = this.selectedIndex;
+    cur_t_ind = this.selectedIndex;
 
     if(cur_t_ind == 0) {
         cur_t_id = "";
         cur_t_p_url = "";
         $('#gb-target-img').css('background', 'url(../../img/common/user.png) no-repeat');
     } else {
-        cur_t_id = this.value;
+        cur_t_id    = this.value;
         cur_t_p_url = fb_friends[cur_t_ind-1]['picture']['data']['url'];
+        cur_t_name  = fb_friends[cur_t_ind-1]['name'];
         $('#gb-target-img').css('background', 'url('+cur_t_p_url+') no-repeat');
     }
 });
@@ -175,7 +182,7 @@ function api_gb_post(content) {
         type: "POST",
         dataType: "json",
         url: api_base + "/gb",
-        data: 'target_user='+cur_t_p_url+'&content='+content,
+        data: 'target_user_url='+cur_t_p_url+'&target_user_id='+cur_t_id+'&target_user_name='+cur_t_name+'&content='+content,
         xhrFields: {
             withCredentials: true
         },
