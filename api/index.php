@@ -204,7 +204,6 @@ $app->post('/gb', function() use($app) {
     }
 
     // post on wall (only for passing the Facebook Review)
-    /*
     try {
         $content    = $_POST['content'];
         $tag_friend = $_POST['target_user_id'];
@@ -219,7 +218,6 @@ $app->post('/gb', function() use($app) {
         error_log($tag . ": " . $e->getMessage());
         $app->halt(500, $tag);
     }
-     */
 
 });
 
