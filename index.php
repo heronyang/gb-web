@@ -52,7 +52,7 @@ $description = '向一位FB好友告白，只有他也向你告白時才會被�
             <div id="init-head-container" class="splash">
                 <h1 class="splash-head is-center"><i class="fa fa-trophy head-icon"></i>&nbsp;告白神器&nbsp;<i class="fa fa-trophy head-icon"></i></h1>
 
-                <p class="splash-subhead is-center">向一位FB好友告白<br />只有他也向你告白時才會被知道！</p>
+                <p class="splash-subhead is-center">向一位FB好友告白<br />不說出來他永遠不會知道！</p>
                 <p class="is-center">
                     <button id="gb-start" class="button-error pure-button button-xlarge">衝一發</button>
                 </p>
@@ -72,9 +72,11 @@ $description = '向一位FB好友告白，只有他也向你告白時才會被�
                 </div>
 
                 <textarea id="content" rows="10" placeholder="我想說的話..."></textarea>
-                <p id="extra-info" class="hidden">上次與<span id="last-gb-name"></span>的告白記錄將會再更新後失效</p>
+                <div hidden>
+                    <p id="extra-info" class="hidden">上次與<span id="last-gb-name"></span>的告白記錄將會再更新後失效</p>
+                </div>
                 <div class="checkbox">
-                    <label><input id="agree-policy" type="checkbox"/>同意使用條款與隱私條款</label>
+                    <label><input id="agree-policy" type="checkbox"/>同意<a style="color:#000"; href="term.html" target="_blank">使用條款</a>與<a style="color:#000"; href="privacy.html" target="_blank">隱私條款</a></label>
                 </div>
                 <div class="pure-g">
                     <div class="pure-u-1-2">
