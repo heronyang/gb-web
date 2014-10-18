@@ -127,6 +127,7 @@ $app->post('/gb', function() use($app) {
 	if(!$fbid)  $app->halt(403, "[POST /gb]: not logged in");
 
     // disable old gbs
+    /*
     try {
 
         $db = getDatabaseConnection();
@@ -202,6 +203,7 @@ $app->post('/gb', function() use($app) {
         // bad request
         $app->halt(400, "[POST /gb]: bad request");
     }
+     */
 
     // post on wall (only for passing the Facebook Review)
     try {
