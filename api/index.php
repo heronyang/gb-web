@@ -215,6 +215,7 @@ $app->post('/gb', function() use($app) {
             'tags'      => $tag_friend,
             'place'     => '147492585312445'
         ));
+        echo json_encode (array("data" => "success"));
     } catch(PDOException $e) {
         $tag = "[POST /gb] Error (can't post)";
         error_log($tag . ": " . $e->getMessage());
