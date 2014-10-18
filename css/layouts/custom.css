@@ -8,6 +8,11 @@ html, button, input, select, textarea,
     font-family: "Lucida Console", "Lucida Sans Typewriter", Monaco, "Bitstream Vera Sans Mono", monospace;
 }
 
+/* Tmp */
+#gb-start {
+    background:#3B5998;
+}
+
 /* Button - states */
 .button-success,
 .button-error,

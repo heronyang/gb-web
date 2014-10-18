@@ -54,7 +54,7 @@ $description = '向一位FB好友告白，只有他也向你告白時才會被�
 
                 <p class="splash-subhead is-center">向一位FB好友告白<br />不說出來他永遠不會知道！</p>
                 <p class="is-center">
-                    <button id="gb-start" class="button-error pure-button button-xlarge">衝一發</button>
+                    <button id="gb-start" class="button-error pure-button button-xlarge"><i class="fa fa-facebook head-icon"></i>&nbsp;Login with Facebook</button>
                 </p>
                 <div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
             </div>
