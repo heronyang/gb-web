@@ -8,7 +8,7 @@ if(file_exists($local_config_filename)) {
 } else {
 
     // force HTTPS on deployeed environment
-    if (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] !== 'on') {
+    if(isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == "http") {
         if(!headers_sent()) {
             header("Status: 301 Moved Permanently");
             header(sprintf(
