@@ -1,4 +1,4 @@
-api_base = 'http://gb-web.herokuapp.com/api/index.php';
+api_base = 'https://gb-web.herokuapp.com/api/index.php';
 if(localStorage['base'])    api_base = localStorage['base'];
 
 var logged_in = false;
@@ -26,7 +26,7 @@ function show_gb_success(data) {
     data.forEach(function(gb) {
         html += '<h4>'+format_time_section(gb['ctime'])+'</h4>';
         html += '<div class="gb-success-single">';
-        html += '<h5><a href="http://www.facebook.com/'+gb['user1']+'" target="_blank">'+gb['gid1_d']['user1_name']+'</a> 跟 <a href="http://www.facebook.com/'+gb['user2']+'" target="_blank">'+gb['gid1_d']['user1_name']+'</a> 在一起了！</h5>';
+        html += '<h5><a href="https://www.facebook.com/'+gb['user1']+'" target="_blank">'+gb['gid1_d']['user1_name']+'</a> 跟 <a href="https://www.facebook.com/'+gb['user2']+'" target="_blank">'+gb['gid1_d']['user1_name']+'</a> 在一起了！</h5>';
         html += '<div class="pure-g">';
 
         html += '<div class="pure-u-1-2"><div class="l-box">';

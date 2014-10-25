@@ -103,7 +103,7 @@ $description = '向一位FB好友告白，只有他也向你告白時才會被�
                         <!---->
                         <h4>2014.04.21 星期日</h4>
                         <div class="gb-success-single">
-                            <h5><a href="http://fb.com/apple" target="_blank">周杰倫</a> 跟 <a href="http://fb.com/banana" target="_blank">昆凌</a> 在一起了！</h5>
+                            <h5><a href="https://fb.com/apple" target="_blank">周杰倫</a> 跟 <a href="https://fb.com/banana" target="_blank">昆凌</a> 在一起了！</h5>
                             <div class="pure-g">
                                 <div class="pure-u-1-2">
                                     <div class="l-box">
@@ -131,7 +131,7 @@ $description = '向一位FB好友告白，只有他也向你告白時才會被�
                         <hr/>
                         <h4>2014.04.20 星期六</h4>
                         <div class="gb-success-single">
-                            <h5><a href="http://fb.com/apple" target="_blank">周杰倫</a> 跟 <a href="http://fb.com/banana" target="_blank">昆凌</a> 在一起了！</h5>
+                            <h5><a href="https://fb.com/apple" target="_blank">周杰倫</a> 跟 <a href="https://fb.com/banana" target="_blank">昆凌</a> 在一起了！</h5>
                             <div class="pure-g">
                                 <div class="pure-u-1-2">
                                     <div class="l-box">
@@ -148,7 +148,7 @@ $description = '向一位FB好友告白，只有他也向你告白時才會被�
                             </div>
                         </div>
                         <div class="gb-success-single">
-                            <h5><a href="http://fb.com/apple" target="_blank">周杰倫</a> 跟 <a href="http://fb.com/banana" target="_blank">昆凌</a> 在一起了！</h5>
+                            <h5><a href="https://fb.com/apple" target="_blank">周杰倫</a> 跟 <a href="https://fb.com/banana" target="_blank">昆凌</a> 在一起了！</h5>
                             <div class="pure-g">
                                 <div class="pure-u-1-2">
                                     <div class="l-box">
@@ -165,7 +165,7 @@ $description = '向一位FB好友告白，只有他也向你告白時才會被�
                             </div>
                         </div>
                         <div class="gb-success-single">
-                            <h5><a href="http://fb.com/apple" target="_blank">周杰倫</a> 跟 <a href="http://fb.com/banana" target="_blank">昆凌</a> 在一起了！</h5>
+                            <h5><a href="https://fb.com/apple" target="_blank">周杰倫</a> 跟 <a href="https://fb.com/banana" target="_blank">昆凌</a> 在一起了！</h5>
                             <div class="pure-g">
                                 <div class="pure-u-1-2">
                                     <div class="l-box">
