@@ -1,0 +1,78 @@
+# allows php on html
+AddType application/x-httpd-php .html
+
+# Using this code, instead of having to type in http://mysite.com/contact.php, you only need to enter http://mysite.com/contact to access that page. 
+# And the best part is, you can still access the page with .php on the end of it, so no old incoming links or bookmarks become orphaned as a result of this, and everyone is happy.
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.htm -f
+RewriteRule ^(.*)$ $1.htm
+
+# gzip compression.
+<IfModule mod_deflate.c>
+
+# html, txt, css, js, json, xml, htc:
+  AddOutputFilterByType DEFLATE text/html text/plain text/css application/json
+  AddOutputFilterByType DEFLATE text/javascript application/javascript application/x-javascript 
+  AddOutputFilterByType DEFLATE text/xml application/xml text/x-component
+
+# ------------------------
+# CACHING to speed up site
+
+# MONTH
+<FilesMatch "\.(flv|gif|jpg|jpeg|png|ico|swf)$">
+   Header set Cache-Control "max-age=2592000"
+</FilesMatch>
+
+# WEEK
+<FilesMatch "\.(js|css|pdf|txt)$">
+   Header set Cache-Control "max-age=604800"
+</FilesMatch>
+
+# DAY
+<FilesMatch "\.(html|htm)$">
+   Header set Cache-Control "max-age=43200"
+</FilesMatch>
+
+# webfonts and svg:
+  <FilesMatch "\.(ttf|otf|eot|svg)$" >
+    SetOutputFilter DEFLATE
+  </FilesMatch>
+</IfModule>
+
+# use utf-8 encoding for anything served text/plain or text/html
+AddDefaultCharset utf-8
+
+# force utf-8 for a number of file formats
+AddCharset utf-8 .html .css .js .xml .json .rss
+
+# Custom 400 errors
+ErrorDocument 400 /error.php
+
+# Custom 401 errors
+ErrorDocument 401 /error.php
+
+# Custom 403 errors
+ErrorDocument 403 /error.php
+
+# Custom 404 errors
+ErrorDocument 404 /error.php
+
+# Custom 500 errors
+ErrorDocument 500 /error.php
+
+# Specifies what file will be the directory index
+DirectoryIndex index.php
+
+# Unhide the code below to turn on a Site Down Page
+# RewriteEngine On
+# RewriteBase /
+# RewriteCond %{REQUEST_URI} !^/your-domain\.php$
+# RewriteRule ^(.*)$ http://your-domain.com/site-down.php [R=307,L]
+
+# redirect any variations of a specific character string to a specific address
+# RewriteEngine On
+# RewriteRule ^appsupport http://www.your-domain.com/ [R]
+
+# ---- # The following will redirect to the new page permanently ----#  
+# Redirect 301 /index.php http://www.your-domain.com/site-down.php
+
