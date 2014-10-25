@@ -34,14 +34,14 @@ function show_gb_success(data) {
         html += '<div class="pure-g">';
 
         html += '<div class="pure-u-1-2"><div class="l-box l-box-l">';
-        html += '<img class="pull-right" src="http://graph.facebook.com/'+gb['user1']+'/picture" width="50" height="50"/>';
+        html += '<img class="thumbnail pull-left" src="http://graph.facebook.com/'+gb['user1']+'/picture" width="50" height="50"/>';
         html += '<p><b><a href="https://www.facebook.com/'+gb['user1']+'" target="_blank">'+gb['gid1_d']['user1_name']+'</a></b> ';
         html += '<time datetime="'+format_time_comment(gb['gid1_d']['ctime'])+'">'+format_time_comment(gb['gid1_d']['ctime'])+'</time></p>';
         html += '<p>'+gb['gid1_d']['content']+'</p>';
         html += '</div></div>';
 
         html += '<div class="pure-u-1-2"><div class="l-box">';
-        html += '<img class="pull-right" src="http://graph.facebook.com/'+gb['user2']+'/picture" width="50" height="50"/>';
+        html += '<img class="thumbnail pull-left" src="http://graph.facebook.com/'+gb['user2']+'/picture" width="50" height="50"/>';
         html += '<p><b><a href="https://www.facebook.com/'+gb['user2']+'" target="_blank">'+gb['gid2_d']['user1_name']+'</a></b> ';
         html += '<time datetime="'+format_time_comment(gb['gid2_d']['ctime'])+'">'+format_time_comment(gb['gid2_d']['ctime'])+'</time></p>';
         html += '<p>'+gb['gid2_d']['content']+'</p>';
@@ -94,6 +94,7 @@ $('#gb-start').click(function() {
 $('#gb-cancel').click(function() {
     $('#submit-gb-container').hide();
     $('#init-head-container').fadeIn('slow');
+    $('.background-image').css('background', '');
     api_logout();
 });
 
@@ -129,7 +130,7 @@ $('#gb-select-friend').on('change', function() {
         cur_t_p_url = fb_friends[cur_t_ind-1]['picture']['data']['url'];
         cur_t_name  = fb_friends[cur_t_ind-1]['name'];
         $('#gb-target-img').css('background', 'url('+cur_t_p_url+') no-repeat');
-        $('.background-image').css('background-image', 'url('+cur_t_p_url+')');
+        $('.background-image').css('background', 'url('+cur_t_p_url+') repeat center center fixed');
     }
 });
 
@@ -221,6 +222,7 @@ function api_gb_post(content) {
             alert('告白記錄建立成功！請持續關注放榜訊息！');
             $('#submit-gb-container').hide();
             $('#init-head-container').fadeIn('slow');
+            $('.background-image').css('background', '');
             api_logout();
         }
     });
