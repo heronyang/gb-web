@@ -14,7 +14,7 @@ $description = '向一位FB好友告白，只有他也向你告白時才會被�
     <body>
     <style>
 html { 
-  background: url(img/404.jpg) no-repeat center center fixed; 
+  background: url(/img/404.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
