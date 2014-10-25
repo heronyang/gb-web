@@ -57,23 +57,17 @@ if(file_exists($local_config_filename)) {
         
         <div id="fb-root"></div>
 
-        <div class="header">
-            <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
-                <a class="pure-menu-heading" href=""><?php echo $title; ?></a>
-            </div>
-        </div>
-    
         <div class="spinner"></div>
 
         <div class="splash-container">
+            <div class="background-image"></div>
             <div id="init-head-container" class="splash">
                 <h1 class="splash-head is-center"><i class="fa fa-trophy head-icon"></i>&nbsp;告白神器&nbsp;<i class="fa fa-trophy head-icon"></i></h1>
 
-                <p class="splash-subhead is-center">向一位FB好友告白<br />只有他也向你告白時才會被知道！</p>
+                <p class="splash-subhead is-center">向一位FB好友告白<br />只有他也向你告白時<br />才顯示在<a href="#gb_success_head">告白成功名單</a>中！</p>
                 <p class="is-center">
                     <button id="gb-start" class="button-error pure-button button-xlarge">衝一發</button>
                 </p>
-                <div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
             </div>
             <div id="submit-gb-container" class="splash hidden">
                 <div class="pure-g">
@@ -83,7 +77,7 @@ if(file_exists($local_config_filename)) {
                         </select>
                     </div>
                     <div class="pure-u-1-2">
-                        <div id="gb-target-img" class="circular pull-right"></div>
+                        <div id="gb-target-img" class="circular is-center"></div>
                     </div>
 
                 </div>
@@ -106,7 +100,7 @@ if(file_exists($local_config_filename)) {
             </div>
         </div>
 
-        <div class="content-wrapper">
+        <div class="content-wrapper" id="gb_success_head">
             <div class="content">
                 <div class="is-center">
                     <h2 class="content-head">告白成功名單</h2>
@@ -122,13 +116,20 @@ if(file_exists($local_config_filename)) {
                 <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5">
 
                     <h2 class="content-head content-head-ribbon">你想後悔嗎？</h2>
-                    <blockquote class="content-quote">五月天：<br/>「有些事現在不做一輩子都不會做了」</blockquote>
+                    <p class="content-quote">五月天：<br/>「有些事現在不做一輩子都不會做了」</p>
 
                 </div>
             </div>
 
             <div class="footer l-box is-center">
-                <p><a href="http://heron.me/" target="_blank">Heron's Production @ NCTU.CS</a></p>
+                <div class="pure-g">
+                    <div class="is-center pure-u-1 pure-u-md-1-2">
+                        <div class="fb-like" data-share="true" data-width="450" data-show-faces="true" data-layout="button" data-colorscheme="light"></div>
+                    </div>
+                    <div class="is-center pure-u-1 pure-u-md-1-2">
+                        <p><a href="http://heron.me/" target="_blank">Heron's Production @ NCTU.CS</a></p>
+                    </div>
+                </div>
             </div>
 
         </div>

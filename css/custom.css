@@ -53,13 +53,21 @@ html, button, input, select, textarea,
 
 /* Button - custom */
 .pure-button {
-    border: 3px solid white;
+    border: 1px solid white;
     margin: 20px;
 }
 
 /* Headline */
 a {
-    color: #1F8DD6;
+    color: #F191BA;
+}
+
+.splash-head {
+    border: 2px solid #eee;
+}
+
+.splash-container a {
+    color: #fff;
 }
 
 .gb-success-single {
@@ -74,6 +82,22 @@ a {
 
 .gb-success-single h5 {
     margin-bottom: 5px;
+}
+
+.l-box-l {
+    border-right: 1px solid #eee;
+}
+
+time {
+    font-size: small;
+}
+
+#init-head-container {
+    margin-top: 50px;
+}
+
+.splash-container {
+    background-color: #F191BA;
 }
 
 /* Textarea */
@@ -92,6 +116,24 @@ div.splash#submit-gb-container {
 
 .splash#submit-gb-container {
     margin-top: 20%;
+}
+
+.background-image {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: -1;
+
+  display: block;
+  /*background-image: url('http://666a658c624a3c03a6b2-25cda059d975d2f318c03e90bcf17c40.r92.cf1.rackcdn.com/unsplash_527bf56961712_1.JPG');*/
+  width: 100%;
+  height: 100%;
+
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
 }
 
 /* Image */
@@ -148,8 +190,34 @@ div.splash#submit-gb-container {
 }
 
 /* Footer */
+.footer {
+    background-color: #000;
+    padding-top: 5px;
+    padding-bottom: 1px;
+}
 .footer a {
     color: #666;
+    font-size: small;
+}
+.ribbon {
+    background-color: #FEEA65;
+}
+
+.ribbon h2 {
+    color: #000;
+}
+
+.ribbon p {
+    color: #666;
+}
+
+.ribbon .l-box-lrg {
+    padding-right: 50px;
+}
+
+/* FB Like/Share */
+.fb-like.fb_iframe_widget {
+    margin-top: 15px;
 }
 
 /* Different Sizes */
