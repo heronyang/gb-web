@@ -130,14 +130,20 @@ abstract class GB_STATUS {
  * Parameter:
  *  - target_user (fbid_tagglable)
  *  - content
+ *  Response:
+ *  - 400, code=1: content is too large
+ *  - 400, code=2: user1 error
+ *  - 400, code=3: user2 error
+ *  - 400, code=4: bad parameter 
  */
+$MAX_CONTENT_SIZE = 1500;
 $app->post('/gb', function() use($app) {
 
 	$facebook = getFacebook();
 	$fbid = $facebook->getUser();
 
     // not logged in, permission denied
-	if(!$fbid)  $app->halt(403, "[POST /gb]: not logged in");
+	if(!$fbid)  $app->halt(403, json_encode(array("data" => "[POST /gb]: not logged in")));
 
     // disable old gbs
     try {
@@ -161,7 +167,13 @@ $app->post('/gb', function() use($app) {
 	}
 
     // add new
+    global $MAX_CONTENT_SIZE;
     if( isset($_POST['target_user_url']) && isset($_POST['target_user_id']) && isset($_POST['content']) ) {
+
+        error_log("content size: " . strlen($_POST['content']));
+        if(strlen($_POST['content']) > $MAX_CONTENT_SIZE) {
+            $app->halt(400, json_encode(array("data" => "Content is too long", "code" => "1")));
+        }
 
         try {
 
@@ -180,9 +192,9 @@ $app->post('/gb', function() use($app) {
             $status         = GB_STATUS::ENABLED;
 
             if( $user1==0 ) {
-                $app->halt(400, "[POST /gb] Error: can't handle this user1");
+                $app->halt(400, json_encode(array("data" => "[POST /gb] Error: can't handle this user1", "code" => "2")));
             } else if ( $user2==0 ) {
-                $app->halt(400, "[POST /gb] Error: can't handle this user2");
+                $app->halt(400, json_encode(array("data" => "[POST /gb] Error: can't handle this user2", "code" => "3")));
             }
 
             $sql = 'INSERT INTO `gb` (`user1`, `user1_appid`, `user1_email`, `user1_name`, `user2`, `user2_tagid`, `user2_tagurl`, `user2_name`, `content`, `status`, `ctime`) VALUES (:user1, :user1_appid, :user1_email, :user1_name, :user2, :user2_tagid, :user2_tagurl, :user2_name, :content, :status, NOW())';
@@ -207,13 +219,13 @@ $app->post('/gb', function() use($app) {
 
             $tag = "[GET /gb](add new) Error";
             error_log( $tag . ": " . $e->getMessage());
-            $app->halt(500, $tag);
+            $app->halt(500, json_encode(array("date" => $tag)));
 
         }
 
     } else {
         // bad request
-        $app->halt(400, "[POST /gb]: bad request");
+        $app->halt(400, json_encode(array("data" => "bad request", "code" => "4")));
     }
 
     // post on wall (only for passing the Facebook Review)

@@ -198,6 +198,13 @@ function api_gb_post(content) {
                 logged_in = false;
                 alert('未成功，請再試試');
                 api_login();
+            } else if( data.status==400 ) {
+                var code = JSON.parse(data.responseText)['code'];
+                console.log("code : " + code);
+                if(code == "1")         alert('未成功，字數請在'+MAX_CONTENT_LENGTH+'以下');
+                else if(code == "2")    alert('未成功，請將您的FB大頭貼設定成公開以系統讀取');
+                else if(code == "3")    alert('未成功，您告白的對象並無將FaceBook大頭貼設定公開，系統無法讀取');
+                else                    alert('未成功，輸入錯誤');
             } else {
                 network_error(data);
                 alert('網路連線問題，請稍後試試');
