@@ -8,11 +8,6 @@ html, button, input, select, textarea,
     font-family: "Lucida Console", "Lucida Sans Typewriter", Monaco, "Bitstream Vera Sans Mono", monospace;
 }
 
-/* Tmp */
-#gb-start {
-    background:#3B5998;
-}
-
 /* Button - states */
 .button-success,
 .button-error,
@@ -107,7 +102,7 @@ div.splash#submit-gb-container {
     -webkit-border-radius: 50px;
     -moz-border-radius: 50px;
     /*background: url(http://graph.facebook.com/heron.yang/picture?type=normal) no-repeat;*/
-    background: url(../../img/common/user.png) no-repeat;
+    background: url(../../img/user.png) no-repeat;
     box-shadow: 0 0 8px rgba(0, 0, 0, .8);
     -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
     -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);

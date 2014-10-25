@@ -14,26 +14,26 @@ $description = '向一位FB好友告白，只有他也向你告白時才會被�
         <meta name="description" content="<?php echo $description; ?>">
         <title><?php echo $title; ?></title>
 
-        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+        <link rel="stylesheet" href="css/vendor/pure-min.css">
 
         <!--[if lte IE 8]>
-        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-old-ie-min.css">
+        <link rel="stylesheet" href="css/vendor/grids-responsive-old-ie-min.css">
         <![endif]-->
         <!--[if gt IE 8]><!-->
-        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css">
+        <link rel="stylesheet" href="css/vendor/grids-responsive-min.css">
         <!--<![endif]-->
 
         <!--[if lte IE 8]>
-        <link rel="stylesheet" href="css/layouts/marketing-old-ie.css">
+        <link rel="stylesheet" href="css/marketing-old-ie.css">
         <![endif]-->
         <!--[if gt IE 8]><!-->
-        <link rel="stylesheet" href="css/layouts/marketing.css">
+        <link rel="stylesheet" href="css/marketing.css">
         <!--<![endif]-->
 
-        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-        <link rel="stylesheet" href="css/layouts/custom.css">
+        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+        <link rel="stylesheet" href="css/custom.css">
 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
     </head>
     <body>
@@ -52,9 +52,9 @@ $description = '向一位FB好友告白，只有他也向你告白時才會被�
             <div id="init-head-container" class="splash">
                 <h1 class="splash-head is-center"><i class="fa fa-trophy head-icon"></i>&nbsp;告白神器&nbsp;<i class="fa fa-trophy head-icon"></i></h1>
 
-                <p class="splash-subhead is-center">向一位FB好友告白<br />不說出來他永遠不會知道！</p>
+                <p class="splash-subhead is-center">向一位FB好友告白<br />只有他也向你告白時才會被知道！</p>
                 <p class="is-center">
-                    <button id="gb-start" class="button-error pure-button button-xlarge"><i class="fa fa-facebook head-icon"></i>&nbsp;Login with Facebook</button>
+                    <button id="gb-start" class="button-error pure-button button-xlarge">衝一發</button>
                 </p>
                 <div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
             </div>
@@ -189,7 +189,7 @@ $description = '向一位FB好友告白，只有他也向你告白時才會被�
 
             <div class="ribbon l-box-lrg pure-g">
                 <div class="l-box-lrg is-center pure-u-1 pure-u-md-1-2 pure-u-lg-2-5">
-                    <img class="pure-img-responsive pull-right" alt="File Icons" width="128" src="img/common/anger.png">
+                    <img class="pure-img-responsive pull-right" alt="File Icons" width="128" src="img/anger.png">
                 </div>
                 <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5">
 
