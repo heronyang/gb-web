@@ -2,7 +2,7 @@
 AddType application/x-httpd-php .html
 
 # deny files
-<Files "Procfile.dev Makefile \.(md)$ \.(sql)$">
+<Files "Procfile.dev|Makefile|*.md$|*.sql$">
     Order Allow,Deny
     Deny from all
 </Files>
