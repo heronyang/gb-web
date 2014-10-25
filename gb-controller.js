@@ -272,12 +272,21 @@ function executeAsync(func) {
 }
 
 function format_time_comment(t) {
-    return t;
+    var d = new Date(t + " GMT+0000");
+    var hours = d.getHours();
+    var minutes = d.getMinutes();
+    var ampm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0'+minutes : minutes;
+    var strTime = hours + ':' + minutes + ' ' + ampm;
+    return strTime;
 }
 
 function format_time_section(t) {
-    var d = new Date(t);
+    var d = new Date(t + " GMT+0000");
     var days = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+    var offset = new Date().getTimezoneOffset();    // timezone
     return (d.getYear()+1900) + "." + (d.getMonth()+1) + "." + d.getDate() + " " + days[d.getDay()];
 }
 
