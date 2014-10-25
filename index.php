@@ -3,6 +3,23 @@
 $title = '告白神器';
 $description = '向一位FB好友告白，只有他也向你告白時才會被知道！';
 
+$local_config_filename = 'api/local_config.php';
+if(file_exists($local_config_filename)) {
+    // debug environment settings
+} else {
+    // deployee environment settings
+    if (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] !== 'on') {
+        if(!headers_sent()) {
+            header("Status: 301 Moved Permanently");
+            header(sprintf(
+                'Location: https://%s%s',
+                $_SERVER['HTTP_HOST'],
+                $_SERVER['REQUEST_URI']
+            ));
+            exit();
+        }
+    }
+}
 ?>
 
 <!doctype html>

@@ -7,6 +7,19 @@ if(file_exists($local_config_filename)) {
     include $local_config_filename;
 } else {
 
+    // force HTTPS on deployeed environment
+    if (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] !== 'on') {
+        if(!headers_sent()) {
+            header("Status: 301 Moved Permanently");
+            header(sprintf(
+                'Location: https://%s%s',
+                $_SERVER['HTTP_HOST'],
+                $_SERVER['REQUEST_URI']
+            ));
+            exit();
+        }
+    }
+
     //
     define('DEBUG_MODE', False);
     define('WEB_URL', 'https://gb-web.herokuapp.com');
