@@ -94,7 +94,7 @@ $app->get('/login', function() use($app) {
 		}
 
 		$login_params = array(
-			'scope' => 'user_friends, email, publish_actions, manage_friendlists'
+			'scope' => 'user_friends, email, manage_friendlists'
 		);
 
 		$app->redirect($facebook->getLoginUrl($login_params));
