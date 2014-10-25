@@ -23,8 +23,13 @@ function show_gb_success(data) {
     }
 
     var html = '<div class="pure-u-1-12"></div><div class="pure-u-1 pure-u-md-5-6">';
+    var previous_time_head = "";
     data.forEach(function(gb) {
-        html += '<h4>'+format_time_section(gb['ctime'])+'</h4>';
+        var time_head = format_time_section(gb['ctime']);
+        if(time_head != previous_time_head) {
+            html += '<h4>'+time_head+'</h4>';
+            previous_time_head = time_head;
+        }
         html += '<div class="gb-success-single">';
         html += '<h5><a href="https://www.facebook.com/'+gb['user1']+'" target="_blank">'+gb['gid1_d']['user1_name']+'</a> 跟 <a href="https://www.facebook.com/'+gb['user2']+'" target="_blank">'+gb['gid1_d']['user1_name']+'</a> 在一起了！</h5>';
         html += '<div class="pure-g">';
@@ -271,7 +276,9 @@ function format_time_comment(t) {
 }
 
 function format_time_section(t) {
-    return t;
+    var d = new Date(t);
+    var days = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+    return (d.getYear()+1900) + "." + d.getMonth() + "." + d.getDate() + " " + days[d.getDay()];
 }
 
 function fillFacebookUsername(data) {
