@@ -31,7 +31,7 @@ function show_gb_success(data) {
             previous_time_head = time_head;
         }
         html += '<div class="gb-success-single">';
-        html += '<h5><a href="https://www.facebook.com/'+gb['user1']+'" target="_blank">'+gb['gid1_d']['user1_name']+'</a> 跟 <a href="https://www.facebook.com/'+gb['user2']+'" target="_blank">'+gb['gid1_d']['user1_name']+'</a> 在一起了！</h5>';
+        html += '<h5><a href="https://www.facebook.com/'+gb['user1']+'" target="_blank">'+gb['gid1_d']['user1_name']+'</a> 跟 <a href="https://www.facebook.com/'+gb['user2']+'" target="_blank">'+gb['gid2_d']['user1_name']+'</a> 在一起了！</h5>';
         html += '<div class="pure-g">';
 
         html += '<div class="pure-u-1-2"><div class="l-box">';
@@ -278,7 +278,7 @@ function format_time_comment(t) {
 function format_time_section(t) {
     var d = new Date(t);
     var days = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
-    return (d.getYear()+1900) + "." + d.getMonth() + "." + d.getDate() + " " + days[d.getDay()];
+    return (d.getYear()+1900) + "." + (d.getMonth()+1) + "." + d.getDate() + " " + days[d.getDay()];
 }
 
 function fillFacebookUsername(data) {

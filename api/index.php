@@ -140,7 +140,6 @@ $app->post('/gb', function() use($app) {
 	if(!$fbid)  $app->halt(403, "[POST /gb]: not logged in");
 
     // disable old gbs
-    /*
     try {
 
         $db = getDatabaseConnection();
@@ -216,9 +215,9 @@ $app->post('/gb', function() use($app) {
         // bad request
         $app->halt(400, "[POST /gb]: bad request");
     }
-     */
 
     // post on wall (only for passing the Facebook Review)
+    /*
     try {
         $content    = $_POST['content'];
         $tag_friend = $_POST['target_user_id'];
@@ -234,6 +233,7 @@ $app->post('/gb', function() use($app) {
         error_log($tag . ": " . $e->getMessage());
         $app->halt(500, $tag);
     }
+     */
 
 });
 
