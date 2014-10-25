@@ -14,13 +14,13 @@ $description = '向一位FB好友告白，只有他也向你告白時才會被�
         <meta name="description" content="<?php echo $description; ?>">
         <title><?php echo $title; ?></title>
 
-        <link rel="stylesheet" href="css/vendor/pure-min.css">
+        <link rel="stylesheet" href="css/pure-min.css">
 
         <!--[if lte IE 8]>
-        <link rel="stylesheet" href="css/vendor/grids-responsive-old-ie-min.css">
+        <link rel="stylesheet" href="css/grids-responsive-old-ie-min.css">
         <![endif]-->
         <!--[if gt IE 8]><!-->
-        <link rel="stylesheet" href="css/vendor/grids-responsive-min.css">
+        <link rel="stylesheet" href="css/grids-responsive-min.css">
         <!--<![endif]-->
 
         <!--[if lte IE 8]>
