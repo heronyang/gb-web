@@ -8,7 +8,8 @@ if(file_exists($local_config_filename)) {
     // debug environment settings
 } else {
     // deployee environment settings
-    if (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] !== 'on') {
+    $is_secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
+    if (!$is_secure) {
         if(!headers_sent()) {
             header("Status: 301 Moved Permanently");
             header(sprintf(
