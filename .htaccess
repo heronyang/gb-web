@@ -2,10 +2,10 @@
 AddType application/x-httpd-php .html
 
 # deny files
-<Files "Procfile.dev|Makefile|*.md$|*.sql$">
-    Order Allow,Deny
-    Deny from all
-</Files>
+RedirectMatch 404 "Makefile"
+RedirectMatch 404 "Procfile.dev"
+RedirectMatch 404 "*.md$"
+RedirectMatch 404 "*.sql$"
 
 # Using this code, instead of having to type in http://mysite.com/contact.php, you only need to enter http://mysite.com/contact to access that page. 
 # And the best part is, you can still access the page with .php on the end of it, so no old incoming links or bookmarks become orphaned as a result of this, and everyone is happy.
