@@ -5,7 +5,7 @@
 html, button, input, select, textarea,
 .pure-g [class *= "pure-u"] {
     /* Set your content font stack here: */
-    font-family: "Lucida Console", "Lucida Sans Typewriter", Monaco, "Bitstream Vera Sans Mono", monospace;
+    font-family: "STKaiti", "KaiTi", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Bitstream Vera Sans Mono", monospace;
 }
 
 /* Button - states */
@@ -53,21 +53,27 @@ html, button, input, select, textarea,
 
 /* Button - custom */
 .pure-button {
-    border: 1px solid white;
+    border: 1px solid #FFE2C2;
     margin: 20px;
 }
 
 /* Headline */
 a {
-    color: #F191BA;
+    color: #b99b79;
 }
 
 .splash-head {
-    border: 2px solid #eee;
+    border: 2px solid #FFE2C2;
+    text-shadow: 2px 2px #A06A2E;
 }
 
 .splash-container a {
-    color: #fff;
+    color: #A06A2E;
+}
+
+p.splash-subhead {
+    color: #A06A2E;
+    font-weight: bold;
 }
 
 .gb-success-single {
@@ -92,12 +98,17 @@ time {
     font-size: small;
 }
 
+h3 {
+    opacity: 0.5;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+}
+
 #init-head-container {
     margin-top: 50px;
 }
 
 .splash-container {
-    background-color: #F191BA;
+    background-color: #f5c998;
 }
 
 /* Textarea */
@@ -209,11 +220,11 @@ div.splash#submit-gb-container {
     padding-bottom: 1px;
 }
 .footer a {
-    color: #666;
+    color: #fff;
     font-size: small;
 }
 .ribbon {
-    background-color: #FEEA65;
+    background-color: #b99b79;
 }
 
 .ribbon h2 {
@@ -221,7 +232,7 @@ div.splash#submit-gb-container {
 }
 
 .ribbon p {
-    color: #666;
+    color: #FFF1E1;
 }
 
 .ribbon .l-box-lrg {
