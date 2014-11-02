@@ -15,6 +15,7 @@ if (window.location.hash && window.location.hash == '#_=_') {
 }
 
 /* UI - Actions */
+var gb_g;
 function show_gb_success(data) {
     var container = $('#gb_success_container');
     if(data == "") {
@@ -32,6 +33,8 @@ function show_gb_success(data) {
         }
         html += '<div class="gb-success-single">';
         html += '<div class="pure-g">';
+
+        gb_g = gb;
 
         html += '<div class="pure-u-1-2"><div class="l-box l-box-l">';
         html += '<img class="thumbnail pull-left" src="http://graph.facebook.com/'+gb['user1']+'/picture" width="50" height="50"/>';
@@ -286,7 +289,10 @@ function executeAsync(func) {
 }
 
 function format_time_comment(t) {
-    var d = new Date(t + " GMT+0000");
+    var offset = (new Date().getTimezoneOffset())/60;   // jetlag (hour)
+    var arr = t.split(/[- :]/);
+    var d = new Date(arr[0], arr[1]-1, arr[2], parseInt(arr[3])+offset, arr[4], arr[5]);
+    // var d = new Date(t + " GMT+0000");
     var hours = d.getHours();
     var minutes = d.getMinutes();
     var ampm = hours >= 12 ? 'pm' : 'am';
@@ -298,7 +304,10 @@ function format_time_comment(t) {
 }
 
 function format_time_section(t) {
-    var d = new Date(t + " GMT+0000");
+    //var d = new Date(t + " GMT+0000");
+    var offset = (new Date().getTimezoneOffset())/60;   // jetlag (hour)
+    var arr = t.split(/[- :]/);
+    var d = new Date(arr[0], arr[1]-1, arr[2], parseInt(arr[3])+offset, arr[4], arr[5]);
     var days = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
     var offset = new Date().getTimezoneOffset();    // timezone
     return (d.getYear()+1900) + "." + (d.getMonth()+1) + "." + d.getDate() + " " + days[d.getDay()];
